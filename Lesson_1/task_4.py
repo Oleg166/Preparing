@@ -29,31 +29,15 @@ deposit(10000, 24)
 """
 
 
-def deposit(begin_sum, month):
-    if 100 <= begin_sum < 10000 and month == 6:
-        rate = 5
-    elif 100 <= begin_sum < 10000 and month == 12:
-        rate = 6
-    elif 100 <= begin_sum < 10000 and month == 24:
-        rate = 5
-
-    elif 10000 <= begin_sum < 100000 and month == 6:
-        rate = 6
-    elif 10000 <= begin_sum < 100000 and month == 12:
-        rate = 7
-    elif 10000 <= begin_sum < 100000 and month == 24:
-        rate = 6.5
-
-    elif 100000 <= begin_sum < 1000000 and month == 6:
-        rate = 7
-    elif 100000 <= begin_sum < 1000000 and month == 12:
-        rate = 8
-    elif 100000 <= begin_sum < 1000000 and month == 24:
-        rate = 7.5
-
-    end_sum = begin_sum + begin_sum * rate * month/100/12
-    dep = {'begin_sum': begin_sum, 'end_sum': end_sum, 'month': month}
-    string = f'Депозит с начальной суммой {begin_sum} на срок {month} месяцев. ' \
+def deposit(begin_sum, months):
+    rates = ({'begin_sum': 1000, 'end_sum': 10000, 6: 5, 12: 6, 24: 5},
+             {'begin_sum': 10000, 'end_sum': 100000, 6: 6, 12: 7, 24: 6.5},
+             {'begin_sum': 100000, 'end_sum': 1000000, 6: 7, 12: 8, 24: 7.5})
+    for i in rates:
+        if i['begin_sum'] <= begin_sum < i['end_sum']:
+            rate = i[months]
+    end_sum = begin_sum + begin_sum * rate * months/100/12
+    string = f'Депозит с начальной суммой {begin_sum} на срок {months} месяцев. ' \
              f'К концу срока {end_sum}.'
     return string
 
@@ -61,31 +45,16 @@ def deposit(begin_sum, month):
 print(deposit(10000, 24))
 
 
-def deposit_with_capitale(begin_sum, month):
-    if 100 <= begin_sum < 10000 and month == 6:
-        rate = 5
-    elif 100 <= begin_sum < 10000 and month == 12:
-        rate = 6
-    elif 100 <= begin_sum < 10000 and month == 24:
-        rate = 5
+def deposit_with_capitale(begin_sum, months):
+    rates = ({'begin_sum': 1000, 'end_sum': 10000, 6: 5, 12: 6, 24: 5},
+             {'begin_sum': 10000, 'end_sum': 100000, 6: 6, 12: 7, 24: 6.5},
+             {'begin_sum': 100000, 'end_sum': 1000000, 6: 7, 12: 8, 24: 7.5})
+    for i in rates:
+        if i['begin_sum'] <= begin_sum < i['end_sum']:
+            rate = i[months]
 
-    elif 10000 <= begin_sum < 100000 and month == 6:
-        rate = 6
-    elif 10000 <= begin_sum < 100000 and month == 12:
-        rate = 7
-    elif 10000 <= begin_sum < 100000 and month == 24:
-        rate = 6.5
-
-    elif 100000 <= begin_sum < 1000000 and month == 6:
-        rate = 7
-    elif 100000 <= begin_sum < 1000000 and month == 12:
-        rate = 8
-    elif 100000 <= begin_sum < 1000000 and month == 24:
-        rate = 7.5
-
-    end_sum = round(begin_sum * ((1 + rate/100/12)**month), 2)
-    dep = {'begin_sum': begin_sum, 'end_sum': end_sum, 'month': month}
-    string = f'Депозит с начальной суммой {begin_sum} на срок {month} месяцев. ' \
+    end_sum = round(begin_sum * ((1 + rate/100/12)**months), 2)
+    string = f'Депозит с начальной суммой {begin_sum} на срок {months} месяцев. ' \
              f'К концу срока с ежемесячной капиталлизацией {end_sum}.'
     return string
 

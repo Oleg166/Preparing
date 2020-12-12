@@ -21,24 +21,16 @@ def print_directory_contents(sPath):
 import os
 
 
-def print_directory_contents(sPath):
-    list_1 = os.listdir(path=sPath)
-    list_2 = []
-    list_3 = []
-    for i in list_1:
-        if i.find('.') != -1:
-            list_2.append(i)
+def print_directory_contents(path):
+    list_1 = []
+    for i in os.listdir(path):
+        name_way = os.path.join(os.path.abspath(path), i)
+        if os.path.isfile(name_way):
+            list_1.append((os.path.abspath(path), i))
         else:
-            list_3.append(i)
-    list_11 = []
-    list_11.append(sPath)
-    for j in list_2:
-        list_11.append(j)
-    tuple_1 = tuple(list_11)
-    print(tuple_1)
-    for q in list_3:
-        sPath = sPath + '/' + str(q)
-        print_directory_contents(sPath)
+            list_1.extend(print_directory_contents(name_way))
+    return list_1
 
 
-print_directory_contents('D:/Repository/00-Django_18_08_2020/Новая папка/dz6_Dementev_Oleg')
+result = print_directory_contents('D:/Repository/00-Django_18_08_2020/Новая папка/dz6_Dementev_Oleg')
+print(result)
