@@ -11,3 +11,14 @@
 Результат:
 views
 """
+STR = '../mainapp/views.py'
+
+
+def namefile(stringone):
+    list_1 = stringone.split('/')
+    str_1 = list_1[len(list_1)-1]
+    list_2 = str_1.split('.')
+    return list_2[0]
+
+
+print(namefile(STR))

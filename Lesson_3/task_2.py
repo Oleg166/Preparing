@@ -19,3 +19,18 @@
 Число 45.34 - дробное
 Левая и правая части не совпадают
 """
+something = input("Введите число : ")
+try:
+    num = int(something)
+    print(f'Число {something} - целое')
+except ValueError:
+    try:
+        floatnum = float(something)
+        print(f'Число {something} - дробное')
+        list_1 = something.split('.')
+        if int(list_1[0]) == int(list_1[1]):
+            print('Левая и правая части совпадают')
+        else:
+            print('Левая и правая части не совпадают')
+    except ValueError:
+        print('Вы ввели не число')
