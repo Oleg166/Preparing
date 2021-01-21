@@ -19,18 +19,24 @@
 Число 45.34 - дробное
 Левая и правая части не совпадают
 """
-something = input("Введите число : ")
-try:
-    num = int(something)
-    print(f'Число {something} - целое')
-except ValueError:
+
+
+def compare_numbers(something):
+    """Проверка типа числа"""
     try:
-        floatnum = float(something)
-        print(f'Число {something} - дробное')
-        list_1 = something.split('.')
-        if int(list_1[0]) == int(list_1[1]):
-            print('Левая и правая части совпадают')
-        else:
-            print('Левая и правая части не совпадают')
+        num = int(something)
+        return (f'Число {something} - целое')
     except ValueError:
-        print('Вы ввели не число')
+        try:
+            floatnum = float(something)
+            print(f'Число {something} - дробное')
+            list_1 = something.split('.')
+            if int(list_1[0]) == int(list_1[1]):
+                return ('Левая и правая части совпадают')
+            else:
+                return ('Левая и правая части не совпадают')
+        except ValueError:
+            return ('Вы ввели не число')
+
+
+print(compare_numbers(input("Введите число: ")))
