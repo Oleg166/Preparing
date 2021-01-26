@@ -1,0 +1,27 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+{% block container %}
+    <h1>Каталог чего-то нужного</h1>
+    <table class="table">
+        <tr>
+            <th>Название</th>
+            <th>Дата поступления</th>
+            <th>Цена</th>
+            <th>Единица измерения</th>
+            <th>Имя поставщика</th>
+        </tr>
+        {% for item in itemslist %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.admission_date|date:"d.m.Y" }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.unit }}</td>
+            <td>{{ item.vendor }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'main:add' %}"
+           class="btn">
+            Добавить
+        </a>
+{% endblock %}

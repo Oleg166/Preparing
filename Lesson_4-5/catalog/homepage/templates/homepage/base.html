@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+    {%  block js %}
+    {% endblock %}
+</head>
+
+<body>
+    <div class="main">
+        <a href="{% url 'main:index' %}" class="btn">
+            На главную
+        </a>
+        {% block container %}
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+{% block container %}
+    <h1>Добавить в каталог</h1>
+    <form class="form-one" action = "{% url 'homepage:add' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <div>{{ form.as_p }}</div>
+            <div><input class="btn-add" type="submit" value="Точно добавляем???"></div>
+        </div>
+    </form>
+{% endblock %}
