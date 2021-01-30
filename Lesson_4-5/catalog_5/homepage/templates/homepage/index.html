@@ -1,0 +1,30 @@
+{% extends 'homepage/base.html' %}
+{% block content %}
+    <h1>Каталог чего-то нужного</h1>
+    <table class="table">
+        {% include "homepage/list.html" %}
+    </table>
+<button type="button btn-success" class="btn btn-primary" data-toggle="modal" data-target="#modal">Добавить</button>
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="label">Добавить продукт</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form action="{% url 'homepage:add' %}" method="post" enctype="multipart/form-data">
+              {% include "homepage/form.html" %}
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-primary" id="add-button">Добавить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

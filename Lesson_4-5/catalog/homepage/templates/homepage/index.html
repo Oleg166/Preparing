@@ -15,7 +15,12 @@
             <td>{{ item.name }}</td>
             <td>{{ item.admission_date|date:"d.m.Y" }}</td>
             <td>{{ item.price }}</td>
-            <td>{{ item.unit }}</td>
+            <td>{% if item.unit == 1 %}
+                шт.
+                {% else %}
+                кг.
+                {% endif %}
+            </td>
             <td>{{ item.vendor }}</td>
         </tr>
         {% endfor %}

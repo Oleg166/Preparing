@@ -1,0 +1,21 @@
+<tr>
+    <th>Название</th>
+    <th>Дата поступления</th>
+    <th>Цена</th>
+    <th>Единица измерения</th>
+    <th>Имя поставщика</th>
+</tr>
+{% for item in itemslist %}
+    <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.admission_date|date:"d.m.Y" }}</td>
+        <td>{{ item.price }}</td>
+        <td>{% if item.unit == 1 %}
+            шт.
+        {% else %}
+            кг.
+        {% endif %}
+        </td>
+        <td>{{ item.vendor }}</td>
+    </tr>
+{% endfor %}
